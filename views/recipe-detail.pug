@@ -16,7 +16,7 @@ block main
       .uk-text-meta Updated on #{recipe.updated}
 
       h2.uk-text-lead Ingredients
-      each ingredient in recipe.Ingredients
+      each ingredient in recipe.ingredients
         div
           span.ingredient-amount= ingredient.amount
           span.ingredient-amount-name= ingredient.MeasurementUnit.name
@@ -24,7 +24,7 @@ block main
 
       h2.uk-text-lead Instructions
       ol
-        each instruction in recipe.Instructions
+        each instruction in recipe.instructions
           li.instructions-list__list-item= instruction.specification
     else
       div(uk-alert)

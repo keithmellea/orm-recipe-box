@@ -25,7 +25,7 @@ block main
           p= recipeError
 
       h2.uk-text-lead Ingredients
-      each ingredient in recipe.Ingredients
+      each ingredient in recipe.ingredients
         div
           span.ingredient-amount= ingredient.amount
           span.ingredient-amount-name= ingredient.MeasurementUnit.name
@@ -55,9 +55,9 @@ block main
             | repository
 
       h2.uk-text-lead Instructions
-      if recipe.Instructions && recipe.Instructions.length
+      if recipe.instructions && recipe.instructions.length
         ol
-          each instruction in recipe.Instructions
+          each instruction in recipe.instructions
             li.instructions-list__list-item= instruction.specification
       else
         p No instructions. Add one below

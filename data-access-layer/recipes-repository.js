@@ -90,11 +90,9 @@ async function getRecipeById(id) {
       }
     ]
   });
-
   return findRecipe;
 }
 
-console.log(getRecipeById(1));
 
 async function deleteRecipe(id) {
   // Use the findByPk method of the Recipe object to get the object and, then,
@@ -102,6 +100,13 @@ async function deleteRecipe(id) {
   // saw in the video.
   //
   // Docs: https://sequelize.org/master/class/lib/model.js~Model.html#instance-method-destroy
+ try {
+  const deleteItem = await recipe.findByPk(id);
+  await deleteItem.destroy();
+ }
+ catch(e) {
+   console.log(e);
+ }
 }
 
 async function createNewRecipe(title) {
@@ -109,6 +114,8 @@ async function createNewRecipe(title) {
   // return it.
   //
   // Docs: https://sequelize.org/v5/manual/instances.html#creating-persistent-instances
+
+  const newRecipe = recipe.
 }
 
 async function searchRecipes(term) {

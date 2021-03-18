@@ -9,8 +9,16 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   recipe.associate = function(models) {
-    recipe.hasMany(models.instruction, {foreignKey: 'recipeId'});
-    recipe.hasMany(models.ingredient, {foreignKey: 'recipeId'})
+      recipe.hasMany(models.instruction, {
+        foreignKey: "recipeId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      recipe.hasMany(models.ingredient, {
+        foreignKey: "recipeId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
   };
   return recipe;
 };

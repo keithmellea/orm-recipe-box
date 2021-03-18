@@ -1,11 +1,11 @@
 const { Op } = require('sequelize');
-let Recipe, Instruction, Ingredient, MeasurementUnit;
+let recipe, instruction, ingredient, MeasurementUnit;
 let moduleError;
 
 try {
   const db = require('../models');
-  ({ Recipe, Instruction, Ingredient, MeasurementUnit } = db);
-  if (Recipe === undefined) {
+  ({ recipe, instruction, ingredient, MeasurementUnit } = db);
+  if (recipe === undefined) {
     moduleError = 'It looks like you need to generate the Recipe model.';
   }
 } catch (e) {
@@ -34,6 +34,13 @@ async function getTenNewestRecipes() {
   // });
   //
   // Docs: https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findAll
+  await recipe.findAll({
+    order: [
+      'updatedAt',
+      'DESC'
+    ],
+    limit: 10,
+  })
 }
 
 async function getRecipeById(id) {

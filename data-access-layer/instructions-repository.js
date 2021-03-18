@@ -35,11 +35,14 @@ async function createNewInstruction(specification, recipeId) {
     }
   })
   let max = 1;
-  for (element in currentInstructions) {
-    if (element.listOrder > max) {
-      max = element.listOrder;
+  console.log(currentInstructions);
+  currentInstructions.forEach(el => {
+    if (el.dataValues.listOrder > max){
+      max = el.dataValues.listOrder;
     }
-  }
+  })
+  max++;
+  console.log(max);
   const newInstruction = await instruction.create({
     specification, max, recipeId
   })

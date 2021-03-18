@@ -115,7 +115,8 @@ async function createNewRecipe(title) {
   //
   // Docs: https://sequelize.org/v5/manual/instances.html#creating-persistent-instances
 
-  const newRecipe = recipe.
+  const newRecipe = await recipe.create({ title });
+  return newRecipe;
 }
 
 async function searchRecipes(term) {
@@ -123,6 +124,14 @@ async function searchRecipes(term) {
   // given term in its title
   //
   // Docs: https://sequelize.org/v5/manual/querying.html
+  const findTerm = await recipe.findAll({ 
+    where: {
+      title:{
+      [Op.substring]: term}
+    }
+  })
+
+  return findTerm;
 }
 
 
